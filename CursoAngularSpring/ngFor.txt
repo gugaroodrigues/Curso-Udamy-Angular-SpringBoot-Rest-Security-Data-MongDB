@@ -1,0 +1,57 @@
+app.component.html
+
+
+  <h1>
+    {{ title }}!
+  </h1>
+  <br/>
+  <input type="text" [(ngModel)]="task">
+  <button type="button" (click)="add()"> Add to list </button>
+  <ul>
+    <li *ngFor="let item of tasks">
+      {{ item }}
+    </li>
+    </ul>
+
+app.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Tasks';
+  tasks = [];
+  task = "";
+  add():void{
+      this.tasks.push(this.task);
+  }
+}
+
+app.module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
